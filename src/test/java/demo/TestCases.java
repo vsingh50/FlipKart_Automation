@@ -44,18 +44,19 @@ public class TestCases {
         }
         
         //Make Search
-        WebElement searchBoxInput = driver.findElement(By.xpath("//input[@class='Pke_EE']"));
+        WebElement searchBoxInput = driver.findElement(By.xpath("//input[contains(@title,'Search')]"));
         String washingMachineString = "Washing Machine";
         Wrappers.sendKeys(driver, searchBoxInput, washingMachineString);
         WebElement searchIcon = driver.findElement(By.xpath("//button[contains(@title,'Search ')]"));
         Wrappers.click(searchIcon, driver);
         System.out.println("Made Search Successfully");
+        
         //Wait till result loads
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='BUOuZu']/span")));
         Thread.sleep(2000);
-        WebElement washingMachineText = driver.findElement(By.xpath("//span[@class='BUOuZu']/span"));
-        if(washingMachineText.getText().contains(washingMachineString)){
+        String washingMachineText = driver.findElement(By.xpath("//input[contains(@title,'Search')]")).getAttribute("value");
+        if(washingMachineText.contains("Washing Machine")){
             System.out.println("Typed Washing Machine into search box");
         }
         else{
@@ -86,17 +87,19 @@ public class TestCases {
         Thread.sleep(2000);
         
         //Make Search
-        WebElement searchBoxInput = driver.findElement(By.xpath("//input[@class='Pke_EE']"));
+        WebElement searchBoxInput = driver.findElement(By.xpath("//input[contains(@title,'Search')]"));
         String iPhoneString = "iPhone";
         Wrappers.sendKeys(driver, searchBoxInput, iPhoneString);
         WebElement searchIcon = driver.findElement(By.xpath("//button[contains(@title,'Search ')]"));
         Wrappers.click(searchIcon, driver);
         System.out.println("Made Search Successfully");
         Thread.sleep(2000);
+
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='BUOuZu']/span")));
-        WebElement iPhoneText = driver.findElement(By.xpath("//span[@class='BUOuZu']/span"));
-        if(iPhoneText.getText().contains(iPhoneString)){
+        String iPhoneText = driver.findElement(By.xpath("//input[contains(@title,'Search')]")).getAttribute("value");
+        if(iPhoneText.contains("iPhone")){
             System.out.println("Typed iPhone into search box");
         }
         else{
@@ -104,7 +107,8 @@ public class TestCases {
         }
 
         List<WebElement> items = driver.findElements(By.className("yKfJKb"));
-        Wrappers.printingProductTitle(driver, items, 8);
+        Wrappers.printingProductTitle(driver, items, 9);
+
 
     }
 

@@ -70,7 +70,9 @@ public class Wrappers {
                 int discountInteger = Integer.parseInt(discountElement.getText().split("%")[0]);
                 if (discountInteger > givenDiscount) {
                     WebElement productTitleElement = parentElement.findElement(By.className("KzDlHZ"));
-                    System.out.println(productTitleElement.getText() + " " + discountElement.getText());
+                    if(discountElement.getText().contains("% off")){
+                        System.out.println(productTitleElement.getText() + " " + discountElement.getText());
+                    }
                 }
             }
         } catch (Exception e) {
