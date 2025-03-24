@@ -107,7 +107,7 @@ public class TestCases {
         }
 
         List<WebElement> items = driver.findElements(By.className("yKfJKb"));
-        Wrappers.printingProductTitle(driver, items, 9);
+        Wrappers.printingProductTitle(driver, items, 4);
 
 
     }
@@ -138,7 +138,7 @@ public class TestCases {
     }
 
 
-    @BeforeMethod
+    @BeforeTest
     public void startBrowser()
     {
         System.setProperty("java.util.logging.config.file", "logging.properties");
@@ -161,7 +161,7 @@ public class TestCases {
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
+    @AfterTest
     public void endTest()
     {
         driver.close();

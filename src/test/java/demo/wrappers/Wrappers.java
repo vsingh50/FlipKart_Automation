@@ -91,25 +91,24 @@ public class Wrappers {
                 map.put(element, ratingsInt);
             }
 
+            // Map.Entry.comparingByValue(Comparator.reverseOrder())
+
             Map<WebElement, Integer> sortedMap = map.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .sorted((a,b) -> b.getValue() - a.getValue())
+                    .limit(5)
                     .collect(Collectors.toMap(
                             Map.Entry::getKey,
                             Map.Entry::getValue,
                             (e1, e2) -> e1,
                             LinkedHashMap::new));
 
-            int limit = 5;
-            int counter = 0;
+            
             for (WebElement element : sortedMap.keySet()) {
                 System.out.println("Title: " + element.findElement(By.className("wjcEIp")).getText());
+                System.out.println("Rating: " + element.findElement(By.className("Wphh3N")).getText());
                 System.out.println("Image URL: "
                         + element.findElement(By.xpath(".//img[contains(@class,'DByuf4')]")).getAttribute("src"));
-                counter++;
-                if (counter == limit) {
-                    break;
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
